@@ -34,14 +34,14 @@ class AppTextStyles {
 
   static const TextStyle descriptiveItem = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
     color: AppColors.black, // Using the custom black color
     letterSpacing: 0,
     height: 0.2
   );
 
   static const TextStyle descriptionText = TextStyle(
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: FontWeight.normal,
     color: AppColors.gray, // Using the custom black color
     letterSpacing: 0,
