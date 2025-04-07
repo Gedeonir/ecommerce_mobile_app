@@ -82,9 +82,11 @@ class _Homepage extends State<Home> {
                 ],
               ),
             ),
+
             SizedBox(
               height: 20,
             ),
+
             Container(
               width: double.infinity,
               padding: EdgeInsets.all(20),
@@ -93,9 +95,11 @@ class _Homepage extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProductHeader(
-                        title: "New",
-                        subTitle: "You’ve never seen it before!",
-                        onViewAllPressed: () {}),
+                      title: "New",
+                      subTitle: "You’ve never seen it before!",
+                      onViewAllPressed: () {}
+                    ),
+
                     SizedBox(
                       height: 10,
                     ),
@@ -104,8 +108,7 @@ class _Homepage extends State<Home> {
                       child: Row(
                         children: [
                           SizedBox(
-                            width:
-                                200, // Ensure each ProductCard has a fixed width
+                            width:200, // Ensure each ProductCard has a fixed width
                             child: ProductCard(
                                 imageUrl:
                                     "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/shoes_b1lwii.jpg",
@@ -115,7 +118,9 @@ class _Homepage extends State<Home> {
                                 price: 40,
                                 rating: 4.5,
                                 onFavoritePressed: () {},
-                                newLabel: true),
+                                newLabel: true,
+                                noLabel:false
+                                ),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -129,7 +134,8 @@ class _Homepage extends State<Home> {
                                 price: 60,
                                 rating: 4.8,
                                 onFavoritePressed: () {},
-                                newLabel: true),
+                                newLabel: true,
+                                noLabel:false),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -143,7 +149,8 @@ class _Homepage extends State<Home> {
                                 price: 60,
                                 rating: 4.8,
                                 onFavoritePressed: () {},
-                                newLabel: true),
+                                newLabel: true,
+                                noLabel:false),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -157,7 +164,8 @@ class _Homepage extends State<Home> {
                                 price: 60,
                                 rating: 4.8,
                                 onFavoritePressed: () {},
-                                newLabel: true),
+                                newLabel: true,
+                                noLabel:false),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -171,7 +179,8 @@ class _Homepage extends State<Home> {
                                 price: 60,
                                 rating: 4.8,
                                 onFavoritePressed: () {},
-                                newLabel: true),
+                                newLabel: true,
+                                noLabel:false),
                           ),
                         ],
                       ),
@@ -279,7 +288,8 @@ class _Homepage extends State<Home> {
                                 price: 40,
                                 rating: 4.5,
                                 onFavoritePressed: () {},
-                                newLabel: false),
+                                newLabel: false,
+                                noLabel:false),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -293,7 +303,8 @@ class _Homepage extends State<Home> {
                                 price: 60,
                                 rating: 4.8,
                                 onFavoritePressed: () {},
-                                newLabel: false),
+                                newLabel: false,
+                                noLabel:false),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -307,7 +318,8 @@ class _Homepage extends State<Home> {
                                 price: 60,
                                 rating: 4.8,
                                 onFavoritePressed: () {},
-                                newLabel: false),
+                                newLabel: false,
+                                noLabel:false),
                           ),
 
                           SizedBox(width: 10), // Add spacing between cards
@@ -322,6 +334,7 @@ class _Homepage extends State<Home> {
                               rating: 4.8,
                               onFavoritePressed: () {},
                               newLabel: false,
+                              noLabel:false
                             ),
                           ),
 
@@ -337,6 +350,7 @@ class _Homepage extends State<Home> {
                               rating: 4.8,
                               onFavoritePressed: () {},
                               newLabel: false,
+                              noLabel:false
                             ),
                           ),
                         ],

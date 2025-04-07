@@ -32,6 +32,13 @@ class AppTextStyles {
     letterSpacing: 0,
   );
 
+  static const TextStyle activeSort = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primary, // Using the custom black color
+    letterSpacing: 0,
+  );
+
   static const TextStyle descriptiveItem = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,
@@ -48,7 +55,7 @@ class AppTextStyles {
   );
 
   static const TextStyle ButtonText = TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: FontWeight.bold,
     color: AppColors.white, // Using the custom black color
     letterSpacing: 0,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_x/pages/Assignment.dart';
 import 'package:project_x/pages/Home.dart';
+import 'package:project_x/pages/ProductList.dart';
+import 'package:project_x/pages/Shop.dart';
 import 'package:project_x/pages/SignIn.dart';
 import 'package:project_x/pages/SignUp.dart';
 import 'package:project_x/pages/homepage.dart';
@@ -26,14 +28,15 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: AppColors.background
       ),
-      initialRoute: '/signup',
+      initialRoute: '/',
       routes: {
-        '/':(context)=>Assignment(),
-        '/api':(context)=>Api(),
+        // '/':(context)=>Assignment(),
+        // '/api':(context)=>Api(),
         '/signup':(context)=>SignUp(),
         '/login':(context)=>SignIn(),
-        '/home':(context)=>Home(),
-      
+        '/':(context)=>Home(),
+        '/shop_now':(context)=>Shop(),
+        '/shop_now/products':(context)=>Productlist()
       }
     );
   }

@@ -11,6 +11,7 @@ class ProductCard extends StatelessWidget{
   final double rating;
   final VoidCallback onFavoritePressed;
   final bool newLabel;
+  final bool noLabel;
 
   const ProductCard({
     Key? key,
@@ -20,12 +21,14 @@ class ProductCard extends StatelessWidget{
     required this.price,
     required this.rating,
     required this.onFavoritePressed,
-    required this.newLabel
+    required this.newLabel,
+    required this.noLabel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
+      double screenHeight = MediaQuery.of(context).size.height;
+
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -45,13 +48,13 @@ class ProductCard extends StatelessWidget{
 
                 child: Image.network(
                   imageUrl,
-                  height: 150,
+                  height: screenHeight * 0.2,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
 
-              SizedBox(height: 10.0,),
+              SizedBox(height: 5.0,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
 
@@ -63,7 +66,7 @@ class ProductCard extends StatelessWidget{
                 ),
               ),
 
-              SizedBox(height: 8,),
+              SizedBox(height: 5,),
                Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
 
@@ -75,7 +78,7 @@ class ProductCard extends StatelessWidget{
                 ),
               ),
 
-              SizedBox(height: 8,),
+              SizedBox(height: 5,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
 
@@ -103,7 +106,8 @@ class ProductCard extends StatelessWidget{
           Positioned(
             left: 10,
             top: 10,
-            child:newLabel? 
+            child:!noLabel?
+            newLabel? 
             Container(
               padding: EdgeInsets.all(4),
               color: AppColors.black,
@@ -115,6 +119,8 @@ class ProductCard extends StatelessWidget{
               color: AppColors.error,
               child: Text("-20%",style: TextStyle(color: AppColors.white,fontWeight: FontWeight.bold,fontSize: 11)),
             )
+            :
+            Text('')
             ),
 
           

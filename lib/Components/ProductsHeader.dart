@@ -35,7 +35,6 @@ class ProductHeader extends StatelessWidget {
            
           child: TextButton(
             child:Container(
-              width: double.infinity,
               alignment: Alignment.topRight,
               child: Text(
               "View All",

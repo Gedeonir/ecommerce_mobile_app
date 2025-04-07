@@ -90,7 +90,7 @@ class _SignInState extends State<SignIn> {
 
               SizedBox(height: 20,),
 
-              SubmitBtn(text: "Sign In", press: ()=>Navigator.pushNamed(context, '/home')),
+              SubmitBtn(text: "Sign In", press: ()=>Navigator.pushNamed(context, '/')),
               
               SizedBox(height: 20,),
 
