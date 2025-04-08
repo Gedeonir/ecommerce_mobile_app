@@ -26,7 +26,7 @@ class AppTextStyles {
   );
 
   static const TextStyle caption = TextStyle(
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: FontWeight.normal,
     color: AppColors.black, // Using the custom black color
     letterSpacing: 0,

@@ -3,8 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project_x/Components/AppColors.dart';
 import 'package:project_x/Components/AppStyles.dart';
 
-class ProductCard extends StatelessWidget{
-   final String imageUrl;
+class ProductCard extends StatelessWidget {
+  final String imageUrl;
   final String title;
   final String description;
   final double price;
@@ -14,117 +14,101 @@ class ProductCard extends StatelessWidget{
   final bool noLabel;
 
   const ProductCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
     required this.price,
     required this.rating,
     required this.onFavoritePressed,
-    required this.newLabel,
-    required this.noLabel,
-  }) : super(key: key);
+    this.newLabel = false,
+    this.noLabel = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-      double screenHeight = MediaQuery.of(context).size.height;
-
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15)
-      ),
-
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(15)
-
-                ),
-
-                child: Image.network(
-                  imageUrl,
-                  height: screenHeight * 0.2,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-
-              SizedBox(height: 5.0,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-
-                child: Text(
-                  title,
-                  style: AppTextStyles.descriptiveItem,
-                  maxLines:1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-
-              SizedBox(height: 5,),
-               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-
-                child: Text(
-                  description,
-                  style: AppTextStyles.descriptionText,
-                  maxLines:1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-
-              SizedBox(height: 5,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-
-                child: RatingBarIndicator(
-                  rating: rating,
-                  itemBuilder: (context,index)=>Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  itemCount: 5,
-                  itemSize: 20,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 2.0), // leave space for price
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(15)),
+                  child: AspectRatio(
+                    aspectRatio: 1.5, // controls image height responsiveness
+                    child: Image.network(
+                      imageUrl,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-
+                const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
-                    '\$${price.toStringAsFixed(2)}',
-                    style: AppTextStyles.subHeads,
+                    title,
+                    style: AppTextStyles.descriptiveItem,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  )
-            ],
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    description,
+                    style: AppTextStyles.descriptionText,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: RatingBarIndicator(
+                    rating: rating,
+                    itemBuilder: (context, index) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    itemCount: 5,
+                    itemSize: 16,
+                  ),
+                ),
+              ],
+            ),
           ),
-          
-          Positioned(
-            left: 10,
-            top: 10,
-            child:!noLabel?
-            newLabel? 
-            Container(
-              padding: EdgeInsets.all(4),
-              color: AppColors.black,
-              child: Text("New",style: TextStyle(color: AppColors.white,fontWeight: FontWeight.bold,fontSize: 11)),
-            )
-            :
-            Container(
-              padding: EdgeInsets.all(4),
-              color: AppColors.error,
-              child: Text("-20%",style: TextStyle(color: AppColors.white,fontWeight: FontWeight.bold,fontSize: 11)),
-            )
-            :
-            Text('')
+
+          // Top Left Label
+          if (!noLabel)
+            Positioned(
+              left: 10,
+              top: 10,
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: newLabel ? AppColors.black : AppColors.error,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Text(
+                  newLabel ? "New" : "-20%",
+                  style: const TextStyle(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                  ),
+                ),
+              ),
             ),
 
-          
-
+          // Top Right Favorite Button
           Positioned(
             top: 10,
             right: 10,
@@ -132,19 +116,28 @@ class ProductCard extends StatelessWidget{
               radius: 15,
               backgroundColor: AppColors.white,
               child: IconButton(
-                icon: Icon(
+                padding: EdgeInsets.zero,
+                icon: const Icon(
                   Icons.favorite_border_outlined,
                   size: 15,
                   color: AppColors.gray,
                 ),
                 onPressed: onFavoritePressed,
               ),
-            )
-          )
-          ],
+            ),
+          ),
+
+          // Bottom Price
+          Positioned(
+            bottom: 10,
+            left: 8,
+            child: Text(
+              '\$${price.toStringAsFixed(2)}',
+              style: AppTextStyles.subHeads,
+            ),
+          ),
+        ],
       ),
     );
   }
-
-
 }

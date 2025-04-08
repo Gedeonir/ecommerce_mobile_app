@@ -58,8 +58,8 @@ class _Homepage extends State<Home> {
                           width: 200,
                           child: Padding(
                               padding: EdgeInsets.only(
-                                left: 20,
-                                right: 20,
+                                left: 10,
+                                right: 10,
                                 bottom: 100,
                               ),
                               child: Column(
@@ -89,7 +89,7 @@ class _Homepage extends State<Home> {
 
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(10),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,8 +227,8 @@ class _Homepage extends State<Home> {
                           width: double.infinity,
                           child: Padding(
                               padding: EdgeInsets.only(
-                                left: 20,
-                                right: 20,
+                                left: 10,
+                                right: 10,
                                 bottom: 10,
                               ),
                               child: Column(
@@ -260,7 +260,7 @@ class _Homepage extends State<Home> {
             ),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(10),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -363,7 +363,7 @@ class _Homepage extends State<Home> {
             ),
             Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,

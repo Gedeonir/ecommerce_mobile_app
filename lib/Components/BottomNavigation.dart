@@ -87,6 +87,8 @@ class _BottomNavigation extends State<BottomNavigation> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart), label: 'Shop'),
               BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_bag), label: 'Bag'),
+              BottomNavigationBarItem(
                   icon: Icon(Icons.favorite), label: 'Favorite'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: 'Profile')

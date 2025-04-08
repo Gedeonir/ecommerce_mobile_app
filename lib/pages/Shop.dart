@@ -71,19 +71,6 @@ class _ShopWidget extends State<Shop>{
               ),
               ),
 
-              DefaultTabController(length: 3, 
-              child: TabBar(
-                labelColor: AppColors.primary,
-                unselectedLabelColor: AppColors.gray,
-                indicatorColor:AppColors.primary,
-                tabs: [
-                  Tab(text: 'Men'),
-                  Tab(text: 'Women'),
-                  Tab(text: 'Kids'),
-                ],
-              ),
-              ),
-
               Expanded(
                 child: Container(
                 child:ListView.builder(

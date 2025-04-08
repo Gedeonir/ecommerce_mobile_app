@@ -64,7 +64,7 @@ const SortOptionsOverlay({
                       child: ListView.builder(
                       itemCount: sortingCategories.length,
                       itemBuilder: (context, index) {
-                        final title = sortingCategories[index]; // 🔹 You can access it here
+                        final title = sortingCategories[index];
 
                         return ListTile(
                           title: Text(

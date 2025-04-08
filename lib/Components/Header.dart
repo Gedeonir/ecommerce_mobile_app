@@ -3,10 +3,14 @@ import 'package:project_x/Components/AppColors.dart';
 import 'package:project_x/Components/AppStyles.dart';
 
 class Header extends StatefulWidget {
+  final String title;
+
+  Header({required this.title});
   _HeaderState createState() => _HeaderState();
 }
 
 class _HeaderState extends State<Header> {
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,7 +34,7 @@ class _HeaderState extends State<Header> {
               },
             ),
             Text(
-              "Men's Shorts",
+              widget.title,
               style: AppTextStyles.subHeads,
             ),
           ],
