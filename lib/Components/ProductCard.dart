@@ -27,7 +27,11 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return GestureDetector(
+    onTap: (){
+      Navigator.pushNamed(context, '/shop_now/one/product');
+    },
+    child: Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Stack(
@@ -55,7 +59,7 @@ class ProductCard extends StatelessWidget {
                   child: Text(
                     title,
                     style: AppTextStyles.descriptiveItem,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -65,10 +69,19 @@ class ProductCard extends StatelessWidget {
                   child: Text(
                     description,
                     style: AppTextStyles.descriptionText,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child:Text(
+                    '\$${price.toStringAsFixed(2)}',
+                    style: AppTextStyles.subHeads,
+                  ),
+                ),
+
                 const SizedBox(height: 4),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -82,6 +95,8 @@ class ProductCard extends StatelessWidget {
                     itemSize: 16,
                   ),
                 ),
+                const SizedBox(height: 4),
+
               ],
             ),
           ),
@@ -127,17 +142,10 @@ class ProductCard extends StatelessWidget {
             ),
           ),
 
-          // Bottom Price
-          Positioned(
-            bottom: 10,
-            left: 8,
-            child: Text(
-              '\$${price.toStringAsFixed(2)}',
-              style: AppTextStyles.subHeads,
-            ),
-          ),
+          
         ],
       ),
+    )
     );
   }
 }

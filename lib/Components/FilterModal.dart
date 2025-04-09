@@ -82,10 +82,20 @@ class _FilterModalState extends State<FilterModal> {
     _categoryName = widget.category;
   }
 
+  List<String> Brands=[];
+
+  void updateBrands( List<String> brand) {
+  
+    setState(() {
+      Brands = brand;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: SingleChildScrollView(
+          child: Container(
             decoration: BoxDecoration(
               color: AppColors.white,
             ),
@@ -308,7 +318,7 @@ class _FilterModalState extends State<FilterModal> {
                                   children: [
                                     Text('Brand',style: AppTextStyles.descriptiveItem,),
                                     SizedBox(height: 10,),
-                                    Text('Adidas,Puma,Louis Vuitton', 
+                                    Text(Brands.length <=0? 'No brand selected' : Brands.join(', '), 
                                     style: AppTextStyles.descriptionText,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
@@ -363,7 +373,10 @@ class _FilterModalState extends State<FilterModal> {
                             ),
                         ]))
               ],
-            )));
+          )
+        )
+      )
+    );
   }
   
 
@@ -373,7 +386,10 @@ class _FilterModalState extends State<FilterModal> {
       barrierColor: Colors.black.withOpacity(0.5), // Dim the background
       transitionDuration: Duration(milliseconds: 300), // Transition speed
       pageBuilder: (context, animation, secondaryAnimation) {
-        return BrandModal();
+        return BrandModal(
+          brands: Brands,
+          updateBrands: updateBrands,
+        );
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         // Set the offset for sliding in from the right

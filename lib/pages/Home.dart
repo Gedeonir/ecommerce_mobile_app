@@ -277,8 +277,8 @@ class _Homepage extends State<Home> {
                       child: Row(
                         children: [
                           SizedBox(
-                            width:
-                                200, // Ensure each ProductCard has a fixed width
+                            width:200, 
+                            
                             child: ProductCard(
                                 imageUrl:
                                     "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/shoes_b1lwii.jpg",
@@ -295,6 +295,7 @@ class _Homepage extends State<Home> {
                           SizedBox(width: 10), // Add spacing between cards
                           SizedBox(
                             width: 200,
+                            
                             child: ProductCard(
                                 imageUrl:
                                     "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601941/ecomerce/image_dylgam.png",
@@ -310,6 +311,7 @@ class _Homepage extends State<Home> {
                           SizedBox(width: 10), // Add spacing between cards
                           SizedBox(
                             width: 200,
+                            
                             child: ProductCard(
                                 imageUrl:
                                     "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/image1_i58pwr.png",
@@ -325,6 +327,7 @@ class _Homepage extends State<Home> {
                           SizedBox(width: 10), // Add spacing between cards
                           SizedBox(
                             width: 200,
+                            
                             child: ProductCard(
                               imageUrl:
                                   "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601941/ecomerce/image_dylgam.png",
@@ -341,6 +344,7 @@ class _Homepage extends State<Home> {
                           SizedBox(width: 10), // Add spacing between cards
                           SizedBox(
                             width: 200,
+                            
                             child: ProductCard(
                               imageUrl:
                                   "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/image1_i58pwr.png",

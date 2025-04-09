@@ -7,7 +7,7 @@ import 'package:project_x/pages/SignIn.dart';
 import 'package:project_x/pages/SignUp.dart';
 import 'package:project_x/pages/homepage.dart';
 import 'package:project_x/pages/Listing.dart';
-import 'package:project_x/pages/API.dart';
+import 'package:project_x/pages/ViewOneProduct.dart';
 import 'Components/AppColors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,12 +31,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // '/':(context)=>Assignment(),
-        // '/api':(context)=>Api(),
+        
         '/signup':(context)=>SignUp(),
         '/login':(context)=>SignIn(),
         '/':(context)=>Home(),
         '/shop_now':(context)=>Shop(),
-        '/shop_now/products':(context)=>Productlist()
+        '/shop_now/products':(context)=>Productlist(),
+        '/shop_now/one/product':(context)=>ViewOneProduct(),
       }
     );
   }

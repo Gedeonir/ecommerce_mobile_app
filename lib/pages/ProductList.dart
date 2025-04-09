@@ -65,7 +65,7 @@ class _ProductlistState extends State<Productlist> {
         child: Column(
           children: [
             Header(
-              title: "Men's Shorts",
+              title: "Men's Shoes",
             ),
             Container(
                 padding: EdgeInsets.only(

@@ -5,6 +5,15 @@ import 'package:project_x/Components/Header.dart';
 import 'package:project_x/Components/SubmitBtn.dart';
 
 class BrandModal extends StatefulWidget {
+  final List<String> brands;
+  final ValueChanged<List<String>> updateBrands;
+
+  const BrandModal({
+    Key?key,
+    required this.brands,
+    required this.updateBrands
+  }): super(key: key);
+
   @override
   _BrandModalState createState() => _BrandModalState();
 }
@@ -27,6 +36,13 @@ class _BrandModalState extends State<BrandModal> {
     setState(() {
       _searchQuery = _searchController.text;
     });
+  }
+
+  late List<String> _brand;
+
+  void initState() {
+    super.initState();
+    _brand=widget.brands;
   }
 
   @override
@@ -95,16 +111,21 @@ class _BrandModalState extends State<BrandModal> {
                 return ListTile(
                   title: Text(
                     title,
-                    style: currentOption == title
+                    style: _brand.contains(title)
                         ? AppTextStyles.activeSort
                         : AppTextStyles.subHeads,
                   ),
-                  trailing: currentOption == title
+                  trailing: _brand.contains(title)
                       ? Icon(Icons.check, color: AppColors.primary)
                       : null,
-                  selected: currentOption == title,
+                  selected: _brand.contains(title),
                   onTap: () {
-                    // onOptionSelected(title);
+                    if (_brand.contains(title)) {
+                      _brand.remove(title);
+                    } else {
+                      _brand.add(title);
+                    }
+                    widget.updateBrands(_brand);
                     Navigator.pop(context);
                   },
                 );
