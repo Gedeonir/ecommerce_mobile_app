@@ -47,11 +47,20 @@ class AppTextStyles {
     height: 0.2
   );
 
+  static const TextStyle textLinks = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.primary, // Using the custom black color
+    letterSpacing: 0,
+    height: 0.2
+  );
+
   static const TextStyle descriptionText = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: AppColors.gray, // Using the custom black color
     letterSpacing: 0,
+    height: 2
   );
 
   static const TextStyle ButtonText = TextStyle(

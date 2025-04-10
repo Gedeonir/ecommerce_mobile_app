@@ -5,7 +5,9 @@ import 'package:project_x/Components/AppColors.dart';
 import 'package:project_x/Components/AppStyles.dart';
 import 'package:project_x/Components/BottomNavigation.dart';
 import 'package:project_x/Components/Header.dart';
+import 'package:project_x/Components/ProductCard.dart';
 import 'package:project_x/Components/Ratings.dart';
+import 'package:project_x/Components/ReviewCard.dart';
 import 'package:project_x/Components/SubmitBtn.dart';
 
 class ViewOneProduct extends StatefulWidget {
@@ -16,6 +18,14 @@ class _ViewOneProductState extends State<ViewOneProduct> {
   String selectedOption = 'Size';
 
   List<String> options = ['Size', 'Option 1', 'Option 2', 'Option 3'];
+
+  List<RatingsData> ratings = [
+    RatingsData(rating: 5.0,itemCount: 5,widthFactor: 1,peoples: 18),
+    RatingsData(rating: 4.0,itemCount: 4,widthFactor: 0.8,peoples: 10),
+    RatingsData(rating: 3.0,itemCount: 3,widthFactor: 0.6,peoples: 4),
+    RatingsData(rating: 2.0,itemCount: 2,widthFactor: 0.4,peoples: 2),
+    RatingsData(rating: 1.0,itemCount: 1,widthFactor: 0.2,peoples: 4)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -172,18 +182,16 @@ class _ViewOneProductState extends State<ViewOneProduct> {
                               width: MediaQuery.of(context).size.width * 0.2,
                               height: 50,
                               decoration: BoxDecoration(
-                                color: Colors.red,
-
                                 shape: BoxShape
                                     .circle, // Ensure the shadow is circular
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black
-                                        .withOpacity(0.2), // Shadow color
+                                    color: AppColors.black
+                                        .withOpacity(0.1), // Shadow color
                                     offset:
-                                        Offset(0, 4), // Shadow position (x, y)
-                                    blurRadius: 6, // Shadow blur radius
-                                    spreadRadius: 2, // Spread radius
+                                        Offset(0, 1), // Shadow position (x, y)
+                                    blurRadius: 10, // Shadow blur radius
+                                    spreadRadius: 1, // Spread radius
                                   ),
                                 ],
                               ),
@@ -242,17 +250,246 @@ class _ViewOneProductState extends State<ViewOneProduct> {
                         SubmitBtn(text: 'Add to bag', press: (){}),
 
                         SizedBox(height: 20,),
-                        Ratings(),
+
+                        //Ratings and review
+                        Container(
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Ratings & Review",
+                                style: AppTextStyles.heading1,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '4.8',
+                                        style: TextStyle(
+                                            fontSize: 50,
+                                            color: AppColors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'Based on 20+ Ratings',
+                                        style: AppTextStyles.descriptionText,
+                                      )
+                                    ],
+                                  ),
+
+                                  SizedBox(width: 10),
+
+                                  Expanded(
+                                    child: Column(
+                                      children:ratings.map((item){
+                                        return Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              width: 80,
+                                              alignment: Alignment.centerRight,
+                                              child: RatingBarIndicator(
+                                              rating: item.rating,
+                                              itemBuilder: (context, index) => const Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                              ),
+                                              itemCount: item.itemCount,
+                                              itemSize: 15.0,
+                                            ),
+                                            ),
+                                            
+
+                                            SizedBox(width: 5),
+
+                                            Expanded(
+                                              child: Container(
+                                                height: 10,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.transparent,
+                                                  borderRadius: BorderRadius.circular(5),
+                                                ),
+                                                child: FractionallySizedBox(
+                                                  alignment: Alignment.centerLeft,
+                                                  widthFactor:item.widthFactor, 
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: AppColors.primary,
+                                                      borderRadius: BorderRadius.circular(5),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+
+                                            SizedBox(width: 5),
+
+                                            Text('${item.peoples}', style: AppTextStyles.descriptionText),
+                                          ],
+                                        );
+                                      
+                                      }).toList(),
+                                    
+                                    ),
+                                  )
+                                ],
+                              ),
+
+                              SizedBox(height: 20,),
+
+                              Padding(padding: EdgeInsets.symmetric(vertical: 10),
+                                child:Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                  Text('20 Review', style: AppTextStyles.subHeads,),
+                                  GestureDetector(
+                                    onTap: (){},
+                                    child: Text('View All Reviews', style:AppTextStyles.textLinks ,),
+                                  )
+                                ])
+                              ),
+
+                            ReviewCard(),
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
-                ],
-              ),
-            ))
+                  ),
+
+                  //Similar Products
+                  Container(
+                    width: double.infinity,
+                    child: Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("You may also like",style: AppTextStyles.subHeads,),
+                          SizedBox(height: 20,),
+
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width:200, // Ensure each ProductCard has a fixed width
+                                  child: ProductCard(
+                                      imageUrl:
+                                          "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/shoes_b1lwii.jpg",
+                                      title: "Jordan 3, White Sliver",
+                                      description:
+                                          "Air Jordan: The Legacy of a Sneaker Icon",
+                                      price: 40,
+                                      rating: 4.5,
+                                      onFavoritePressed: () {},
+                                      newLabel: true,
+                                      noLabel:false
+                                      ),
+                                ),
+
+                                SizedBox(width: 10), // Add spacing between cards
+                                SizedBox(
+                                  width: 200,
+                                  child: ProductCard(
+                                      imageUrl:
+                                          "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601941/ecomerce/image_dylgam.png",
+                                      title: "T-Shirt sailing",
+                                      description: "Mango Boy",
+                                      price: 60,
+                                      rating: 4.8,
+                                      onFavoritePressed: () {},
+                                      newLabel: true,
+                                      noLabel:false),
+                                ),
+
+                                SizedBox(width: 10), // Add spacing between cards
+                                SizedBox(
+                                  width: 200,
+                                  child: ProductCard(
+                                      imageUrl:
+                                          "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/image1_i58pwr.png",
+                                      title: "Blouse",
+                                      description: "OVS",
+                                      price: 60,
+                                      rating: 4.8,
+                                      onFavoritePressed: () {},
+                                      newLabel: true,
+                                      noLabel:false),
+                                ),
+
+                                SizedBox(width: 10), // Add spacing between cards
+                                SizedBox(
+                                  width: 200,
+                                  child: ProductCard(
+                                      imageUrl:
+                                          "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601941/ecomerce/image_dylgam.png",
+                                      title: "T-Shirt sailing",
+                                      description: "Mango Boy",
+                                      price: 60,
+                                      rating: 4.8,
+                                      onFavoritePressed: () {},
+                                      newLabel: true,
+                                      noLabel:false),
+                                ),
+
+                                SizedBox(width: 10), // Add spacing between cards
+                                SizedBox(
+                                  width: 200,
+                                  child: ProductCard(
+                                      imageUrl:
+                                          "https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/image1_i58pwr.png",
+                                      title: "Blouse",
+                                      description: "OVS",
+                                      price: 60,
+                                      rating: 4.8,
+                                      onFavoritePressed: () {},
+                                      newLabel: true,
+                                      noLabel:false),
+                                ),
+                              ],
+                            ),
+                          )
+                      
+
+
+                            ],
+                          ),
+                        )
+                      )
+                    ],
+                  ),
+                )
+            )
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigation(),
     );
   }
+}
+
+class RatingsData {
+  final double rating;
+  final int itemCount; 
+  final double widthFactor;
+  final int peoples;
+
+  RatingsData({
+    required this.widthFactor,
+    required this.rating,
+    required this.itemCount,
+    required this.peoples
+  });
 }
