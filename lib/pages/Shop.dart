@@ -40,7 +40,7 @@ class _ShopWidget extends State<Shop>{
                 height: 50,
               child: Container(
                 color: AppColors.white,
-                padding: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                 child:Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,12 +49,12 @@ class _ShopWidget extends State<Shop>{
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      IconButton(
-                        icon: Icon(Icons.chevron_left, size: 20, color: AppColors.black,),
-                        onPressed: () {
-                          Navigator.pop(context);  // Pops the current screen off the stack to go back
-                        },
-                      ),
+                      // IconButton(
+                      //   icon: Icon(Icons.chevron_left, size: 20, color: AppColors.black,),
+                      //   onPressed: () {
+                      //     Navigator.pop(context);  // Pops the current screen off the stack to go back
+                      //   },
+                      // ),
 
 
                       Text("Pick category",style: AppTextStyles.subHeads,),
@@ -73,6 +73,7 @@ class _ShopWidget extends State<Shop>{
 
               Expanded(
                 child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                 child:ListView.builder(
                 itemCount: categories.length,
                 itemBuilder: (context,index){

@@ -27,7 +27,7 @@ class _BottomNavigation extends State<BottomNavigation> {
       _selectedIndex = 0;
     } else if (currentRoute.contains('/shop_now')) {
       _selectedIndex = 1;
-    } else if (currentRoute == '/bag') {
+    } else if (currentRoute == '/my_bag') {
       _selectedIndex = 2;
     } else if (currentRoute == '/my_favorites') {
       _selectedIndex = 3;
@@ -54,7 +54,7 @@ class _BottomNavigation extends State<BottomNavigation> {
         Navigator.pushReplacementNamed(context, '/shop_now');
         break;
       case 2:
-        Navigator.pushReplacementNamed(context, '/bag');
+        Navigator.pushReplacementNamed(context, '/my_bag');
         break;
       case 3:
         Navigator.pushReplacementNamed(context, '/my_favorites');

@@ -11,7 +11,7 @@ class AppTextStyles {
   );
 
   static const TextStyle heading2 = TextStyle(
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
     color: AppColors.black, // Using the custom black color
     letterSpacing: 0,
@@ -19,7 +19,7 @@ class AppTextStyles {
   );
 
   static const TextStyle subHeads = TextStyle(
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: FontWeight.bold,
     color: AppColors.black, // Using the custom black color
     letterSpacing: 0,
@@ -59,6 +59,14 @@ class AppTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: AppColors.gray, // Using the custom black color
+    letterSpacing: 0,
+    height: 2
+  );
+
+   static const TextStyle errorText = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+    color: AppColors.error, // Using the custom black color
     letterSpacing: 0,
     height: 2
   );

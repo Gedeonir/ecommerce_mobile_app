@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_x/pages/Assignment.dart';
+import 'package:project_x/pages/Favourites.dart';
 import 'package:project_x/pages/Home.dart';
+import 'package:project_x/pages/MyBag.dart';
 import 'package:project_x/pages/ProductList.dart';
 import 'package:project_x/pages/Shop.dart';
 import 'package:project_x/pages/SignIn.dart';
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
         '/shop_now':(context)=>Shop(),
         '/shop_now/products':(context)=>Productlist(),
         '/shop_now/one/product':(context)=>ViewOneProduct(),
+        '/my_favorites':(context)=>Favourites(),
+        '/my_bag':(context)=>MyBag(),
       }
     );
   }
