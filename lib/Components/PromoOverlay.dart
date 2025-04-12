@@ -3,21 +3,48 @@ import 'package:project_x/Components/AppColors.dart';
 import 'package:project_x/Components/AppStyles.dart';
 import 'package:project_x/Components/SubmitBtn.dart';
 
-class PromosOverlay extends StatelessWidget{
+class PromosOverlay extends StatefulWidget {
+  final int currentOption;
+  final String selectedPromo;
+  final double discount;
+  final ValueChanged<int> onOptionSelected;
+  final ValueChanged<String> onOptionChange;
+  final ValueChanged<double> handleDiscount;
 
-  final String currentOption;
-  // final ValueChanged<String> onOptionSelected;
-
-const PromosOverlay({
+  const PromosOverlay({
     Key? key,
     required this.currentOption,
-    // required this.onOptionSelected,/
+    required this.onOptionSelected,
+    required this.onOptionChange,
+    required this.selectedPromo,
+    required this.handleDiscount,
+    required this.discount
   }) : super(key: key);  
 
   @override
+  _PromosOverlay createState() => _PromosOverlay();
+}
+
+class _PromosOverlay extends State<PromosOverlay>{
+
+  late int _selectedOption;
+  late String _selectedTitle;
+  late double _selectedDiscount;
+
+  void initState() {
+    super.initState();
+    _selectedOption = widget.currentOption;
+    _selectedTitle = widget.selectedPromo;
+    _selectedDiscount = widget.discount;
+  }
+
+  
+  @override
   Widget build(BuildContext context) {
+    
     List<Promotion> sortingCategories=[
       Promotion(
+        id: 1,
         title: 'Summer promotion', 
         description: 'Summer promotion', 
         image: 'https://res.cloudinary.com/gedeoncloud/image/upload/v1744389933/pngtree-up-to-20-off-price-tag-design-png-image_6429660_j0pj4g.png', 
@@ -27,6 +54,7 @@ const PromosOverlay({
       ),
 
       Promotion(
+        id: 2,
         title: 'Festive seasons Promo', 
         description: 'New year promotion', 
         image: 'https://res.cloudinary.com/gedeoncloud/image/upload/v1744393539/pngtree-30-off-price-reduction-discount-png-image_368032_b2jdt8.jpg', 
@@ -36,6 +64,7 @@ const PromosOverlay({
       ),
 
       Promotion(
+        id: 3,
         title: 'Festive seasons Promo', 
         description: 'New year promotion', 
         image: 'https://res.cloudinary.com/gedeoncloud/image/upload/v1744393539/pngtree-30-off-price-reduction-discount-png-image_368032_b2jdt8.jpg', 
@@ -88,12 +117,25 @@ const PromosOverlay({
                       itemBuilder: (context, index) {
                         final item = sortingCategories[index];
 
-                        return Container(
+                        return GestureDetector(
+                          onTap:!item.isValid?null: (){
+                            setState(() {
+                              _selectedOption = item.id;
+                              _selectedTitle=item.title;
+                              _selectedDiscount=item.percentageOff/100;
+                            });
+
+                            widget.onOptionSelected(item.id);
+                            widget.onOptionChange(item.title);
+                            widget.handleDiscount(item.percentageOff/100);
+                          },
+                          child: Container(
                           height: 150,
                           margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                           decoration: BoxDecoration(
                             color: AppColors.white,
                             borderRadius: BorderRadius.circular(10),
+                            border: _selectedOption == item.id? Border.all(color: AppColors.primary,width: 1):null,
                             boxShadow: [
                               BoxShadow(
                                 color: AppColors.black.withOpacity(0.1),
@@ -138,10 +180,6 @@ const PromosOverlay({
                                           SizedBox(height: 10,),
 
                                           Text(item.isValid? 'Offer valid until June 20, 2025':'Offer Expired on June 20, 2025',style: item.isValid? AppTextStyles.descriptionText:AppTextStyles.errorText,),
-                                          SizedBox(height: 5,),
-                                          item.isValid?
-                                          SizedBox(width:150, child: SubmitBtn(text: 'Apply', press: (){}),)
-                                          : Container(),
                                         ],
                                       ),
 
@@ -152,6 +190,7 @@ const PromosOverlay({
                               )
                             ],
                           ),
+                        )
                         );
                       },
                     ),
@@ -175,6 +214,7 @@ class Promotion{
   bool isValid;
   String expirationDate;
   int percentageOff;
+  int id;
 
   Promotion({
     required this.title,
@@ -182,6 +222,7 @@ class Promotion{
     required this.image,
     required this.isValid,
     required this.expirationDate,
-    required this.percentageOff
+    required this.percentageOff,
+    required this.id
   });
 }

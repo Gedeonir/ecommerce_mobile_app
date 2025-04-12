@@ -30,7 +30,6 @@ class _BrandModalState extends State<BrandModal> {
     'Nike'
   ];
 
-  String currentOption = 'Adidas';
 
   void _performSearch() {
     setState(() {

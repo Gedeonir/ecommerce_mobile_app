@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project_x/Components/AppColors.dart';
 import 'package:project_x/Components/AppStyles.dart';
 import 'package:project_x/Components/BottomNavigation.dart';
+import 'package:project_x/Components/Checkout.dart';
 import 'package:project_x/Components/ProductCard2.dart';
 import 'package:project_x/Components/PromoOverlay.dart';
+import 'package:project_x/Components/SubmitBtn.dart';
 
 class MyBag extends StatefulWidget{
   @override
@@ -40,7 +42,9 @@ class _MyBagState extends State<MyBag>{
       imgUrl: 'https://res.cloudinary.com/gedeoncloud/image/upload/v1741601864/ecomerce/shoes_b1lwii.jpg',
       brand: 'Nike'
     )
+
   ];
+
 
   void updateProductPrice(int id,int items){
     final index =products.indexWhere((item)=>item.id==id);
@@ -48,7 +52,32 @@ class _MyBagState extends State<MyBag>{
       products[index].price=items*products[index].unitPrice;
     });
   }
+
+  int selectedOption=0;
+  String selectedPromo='';
+  double discountOffer=0;
+
+
+  void onPromoOptionSelected(int id){
+    setState((){
+      selectedOption=id;
+    });
+  }
+
+  void onPromoOptionChange(String title){
+    setState((){
+      selectedPromo=title;
+    });
+  }
+
+  void applyDiscount(double discount){
+    setState((){
+      discountOffer=discount;
+    });
+  }
+
   
+
 
 
   @override
@@ -128,14 +157,15 @@ class _MyBagState extends State<MyBag>{
                                 ],
                               ),
 
-                              child: Text('Choose your promocode',style: AppTextStyles.descriptionText,),
+                              child: Text(selectedPromo==''?'Choose your promocode':selectedPromo,style: AppTextStyles.descriptionText,),
 
                             ),
 
                             Positioned(
                               top: 0,
                               right: 0,
-                              child: CircleAvatar(
+                              child: selectedPromo==''?
+                              CircleAvatar(
                                 radius: 22,
                                 backgroundColor: AppColors.black,
                                 child: IconButton(
@@ -149,7 +179,28 @@ class _MyBagState extends State<MyBag>{
                                     _showPoromoOptionsOverlay(context);
                                   },
                                 ),
-                              ),
+                              )
+                              :
+
+                              Padding(
+                                padding: EdgeInsets.all(2),
+                                child: IconButton(
+                                padding: EdgeInsets.zero,
+                                icon: const Icon(
+                                  Icons.close,
+                                  size: 22,
+                                  color: AppColors.gray,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    selectedOption=0;
+                                    selectedPromo='';
+                                    discountOffer=0;
+                                  });
+                                },
+                              )
+                              )
+                              ,
                             )
                           
                           ]
@@ -168,11 +219,17 @@ class _MyBagState extends State<MyBag>{
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Total amount',style: AppTextStyles.descriptionText,),
-                          Text('\$${products.map((item) => item.price).reduce((a, b) => a + b).toStringAsFixed(2)}',style: AppTextStyles.subHeads,),
+                          Text('\$${(products.map((item) => item.price).reduce((a, b) => a + b) * (1-discountOffer)).toStringAsFixed(2)}',style: AppTextStyles.subHeads,),
                         
                         ]
                       ),
+                    ),
+
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: SubmitBtn(text: 'Proceed to checkout', press: (){_showCheckoutOverlay(context);},),
                     )
+
                   ],
                 )
                
@@ -194,11 +251,42 @@ class _MyBagState extends State<MyBag>{
       context: context,
       builder: (BuildContext context) {
         return PromosOverlay(
-          currentOption: '',
+          currentOption: selectedOption,
+          onOptionSelected: onPromoOptionSelected,
+          onOptionChange: onPromoOptionChange,
+          selectedPromo: selectedPromo,
+          discount: discountOffer,
+          handleDiscount: applyDiscount,
         );
       },
     );
   }
+
+  void _showCheckoutOverlay(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.5), // Dim the background
+      transitionDuration: Duration(milliseconds: 300), // Transition speed
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Checkout();
+      },
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        // Set the offset for sliding in from the right
+        const begin = Offset(1.0, 0.0); // Start from the right side
+        const end = Offset.zero; // End at the center
+
+        // Set the curve for the animation
+        const curve = Curves.easeInOut;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var offsetAnimation = animation.drive(tween);
+
+        return SlideTransition(position: offsetAnimation, child: child);
+      },
+    );
+  }
+
 }
 
 

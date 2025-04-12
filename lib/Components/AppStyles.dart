@@ -25,6 +25,13 @@ class AppTextStyles {
     letterSpacing: 0,
   );
 
+  static const TextStyle subHeads2 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: AppColors.gray, // Using the custom black color
+    letterSpacing: 0,
+  );
+
   static const TextStyle caption = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.normal,
@@ -72,9 +79,9 @@ class AppTextStyles {
   );
 
   static const TextStyle ButtonText = TextStyle(
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
     color: AppColors.white, // Using the custom black color
-    letterSpacing: 0,
+    letterSpacing: 2,
   );
 }
