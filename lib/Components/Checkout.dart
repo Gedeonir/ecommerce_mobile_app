@@ -6,6 +6,12 @@ import 'package:project_x/Components/SubmitBtn.dart';
 
 
 class Checkout extends StatefulWidget {
+  final double orderPrice;
+  final double deliveryFee;
+  final double payableFee;
+
+  Checkout({required this.orderPrice,required this.deliveryFee,required this.payableFee});
+
   @override
   _CheckoutState createState() => _CheckoutState();
 }
@@ -152,7 +158,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Order:',style: AppTextStyles.subHeads2,),
-                          Text('\$'+'121',style: AppTextStyles.subHeads,)
+                          Text('\$'+ widget.orderPrice.toString(),style: AppTextStyles.subHeads,)
                         ],
                       ),
 
@@ -162,7 +168,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Delivery fee:',style: AppTextStyles.subHeads2,),
-                          Text('\$'+'12',style: AppTextStyles.subHeads,)
+                          Text('\$'+ widget.deliveryFee.toString(),style: AppTextStyles.subHeads,)
                         ],
                       ),
 
@@ -172,7 +178,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Total payable amount:',style: AppTextStyles.subHeads2,),
-                          Text('\$'+'12',style: AppTextStyles.subHeads,)
+                          Text('\$'+ (widget.orderPrice+widget.deliveryFee).toString(),style: AppTextStyles.subHeads,)
                         ],
                       ),
 

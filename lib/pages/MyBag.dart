@@ -76,6 +76,10 @@ class _MyBagState extends State<MyBag>{
     });
   }
 
+  double getTotalPrice(){
+  return products.map((item) => item.price).reduce((a, b) => a + b) * (1-discountOffer);
+  }
+
   
 
 
@@ -219,7 +223,7 @@ class _MyBagState extends State<MyBag>{
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text('Total amount',style: AppTextStyles.descriptionText,),
-                          Text('\$${(products.map((item) => item.price).reduce((a, b) => a + b) * (1-discountOffer)).toStringAsFixed(2)}',style: AppTextStyles.subHeads,),
+                          Text('\$${getTotalPrice().toStringAsFixed(2)}',style: AppTextStyles.subHeads,),
                         
                         ]
                       ),
@@ -268,7 +272,12 @@ class _MyBagState extends State<MyBag>{
       barrierColor: Colors.black.withOpacity(0.5), // Dim the background
       transitionDuration: Duration(milliseconds: 300), // Transition speed
       pageBuilder: (context, animation, secondaryAnimation) {
-        return Checkout();
+        return Checkout(
+          orderPrice:getTotalPrice(),
+          deliveryFee: 12.0,
+          payableFee: 0.0,
+          
+        );
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         // Set the offset for sliding in from the right
