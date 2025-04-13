@@ -133,6 +133,7 @@ class _MyBagState extends State<MyBag>{
                           color: item.color,
                           imgUrl: item.imgUrl,
                           updateProductPrice:(int items)=> updateProductPrice(item.id, items),
+                          isIncrementVisible: true
                         );
 
                       }).toList() 
@@ -222,7 +223,7 @@ class _MyBagState extends State<MyBag>{
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Total amount',style: AppTextStyles.descriptionText,),
+                          Text('Total amount',style: AppTextStyles.subHeads2,),
                           Text('\$${getTotalPrice().toStringAsFixed(2)}',style: AppTextStyles.subHeads,),
                         
                         ]

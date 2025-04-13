@@ -10,6 +10,7 @@ class ProductCard2 extends StatefulWidget {
   final String imgUrl;
   final int id;
   final ValueChanged<int> updateProductPrice;
+  final bool isIncrementVisible;
 
   ProductCard2({
     required this.title,
@@ -18,7 +19,8 @@ class ProductCard2 extends StatefulWidget {
     required this.price,
     required this.id,
     required this.imgUrl,
-    required this.updateProductPrice
+    required this.updateProductPrice,
+    required this.isIncrementVisible
   });
 
   _ProductCard2State createState() => _ProductCard2State();
@@ -73,7 +75,7 @@ class _ProductCard2State extends State<ProductCard2> {
               children: [
                 Container(
                   height:
-                      150, // or MediaQuery.of(context).size.height for full screen height
+                      160, // or MediaQuery.of(context).size.height for full screen height
                   width: MediaQuery.of(context).size.width * 0.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -98,14 +100,18 @@ class _ProductCard2State extends State<ProductCard2> {
                             widget.title,
                             style: AppTextStyles.subHeads,
                           ),
-                          IconButton(
-                            onPressed: (){}, 
-                            icon:Icon(
-                              Icons.more_vert,
-                              size: 25,
-                              color: AppColors.gray,
+
+                          widget.isIncrementVisible ? 
+                            IconButton(
+                              onPressed: (){}, 
+                              icon:Icon(
+                                Icons.more_vert,
+                                size: 25,
+                                color: AppColors.gray,
+                              )
                             )
-                          )
+                          :
+                          Text('')
                         ],
                       ),
                       Row(
@@ -160,6 +166,8 @@ class _ProductCard2State extends State<ProductCard2> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          widget.isIncrementVisible
+                          ?
                           Container(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -238,7 +246,21 @@ class _ProductCard2State extends State<ProductCard2> {
                                 )
                               ],
                             ),
+                          )
+                          :
+                          Container(
+                            child: Row(
+                              children: [
+                                Text('Units: ', style: AppTextStyles.descriptionText,),
+                                Text(
+                                  itemsCount.toString(),
+                                  style: AppTextStyles.descriptiveItem,
+                                ),
+                              ],
+                            )
+                            
                           ),
+
                           Container(
                             child: Text(
                               '\$'+widget.price.toStringAsFixed(2),

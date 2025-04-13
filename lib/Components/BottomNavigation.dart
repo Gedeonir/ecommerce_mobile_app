@@ -31,7 +31,7 @@ class _BottomNavigation extends State<BottomNavigation> {
       _selectedIndex = 2;
     } else if (currentRoute == '/my_favorites') {
       _selectedIndex = 3;
-    } else if (currentRoute == '/my_profile') {
+    } else if (currentRoute.contains('/my_profile')) {
       _selectedIndex = 4;
     } else {
       _selectedIndex = 0; // Default to Home

@@ -221,7 +221,8 @@ class _CheckoutState extends State<Checkout> {
               fit: BoxFit.cover,
             ),
           ),
-          child:Column(
+          child:SingleChildScrollView(
+            child:Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -252,6 +253,7 @@ class _CheckoutState extends State<Checkout> {
               )
 
             ],
+          )
           )
         );
       },

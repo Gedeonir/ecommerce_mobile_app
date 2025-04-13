@@ -63,6 +63,7 @@ class _ProductlistState extends State<Productlist> {
     return Scaffold(
       body: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Header(
               title: "Men's Shoes",

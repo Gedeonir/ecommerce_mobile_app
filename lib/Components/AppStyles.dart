@@ -22,14 +22,14 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.bold,
     color: AppColors.black, // Using the custom black color
-    letterSpacing: 0,
+    letterSpacing: 1,
   );
 
   static const TextStyle subHeads2 = TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
     color: AppColors.gray, // Using the custom black color
-    letterSpacing: 0,
+    letterSpacing: 1,
   );
 
   static const TextStyle caption = TextStyle(
@@ -47,11 +47,11 @@ class AppTextStyles {
   );
 
   static const TextStyle descriptiveItem = TextStyle(
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: FontWeight.bold,
     color: AppColors.black, // Using the custom black color
-    letterSpacing: 0,
-    height: 0.2
+    letterSpacing: 1,
+    height: 1.2
   );
 
   static const TextStyle textLinks = TextStyle(
@@ -71,17 +71,32 @@ class AppTextStyles {
   );
 
    static const TextStyle errorText = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.normal,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
     color: AppColors.error, // Using the custom black color
     letterSpacing: 0,
     height: 2
   );
 
-  static const TextStyle ButtonText = TextStyle(
-    fontSize: 16,
+  static const TextStyle successText = TextStyle(
+    fontSize: 14,
     fontWeight: FontWeight.bold,
+    color: AppColors.success, // Using the custom black color
+    letterSpacing: 0,
+    height: 2
+  );
+
+  static const TextStyle ButtonText = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
     color: AppColors.white, // Using the custom black color
-    letterSpacing: 2,
+    letterSpacing: 1,
+  );
+
+  static const TextStyle ButtonText2 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black, // Using the custom black color
+    letterSpacing: 1,
   );
 }
