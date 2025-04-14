@@ -73,34 +73,35 @@ class _ShopWidget extends State<Shop>{
 
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                child:ListView.builder(
-                itemCount: categories.length,
-                itemBuilder: (context,index){
-                  return Card(
-                    elevation: 0,
-                    color: AppColors.background,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: Colors.grey, width: 1),
-                        )
+                  // padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                  child:ListView.builder(
+                  itemCount: categories.length,
+                  itemBuilder: (context,index){
+                    return Card(
+                      elevation: 0,
+                      color: AppColors.background,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(color: Colors.grey, width: 1),
+                          )
+                        ),
+                      child: GestureDetector(
+                      onTap: ()=>Navigator.pushNamed(context,'/shop_now/products'),
+                      child:ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
+                        leading: CircleAvatar(
+                          backgroundColor: AppColors.white,
+                          child: Text(categories[index][0], style: AppTextStyles.caption,),
+                        ),
+                        title: Text(categories[index], style: AppTextStyles.subHeads,),
+                        trailing: Icon(Icons.chevron_right),
                       ),
-                    child: GestureDetector(
-                    onTap: ()=>Navigator.pushNamed(context,'/shop_now/products'),
-                    child:ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 2),
-                      leading: CircleAvatar(
-                        backgroundColor: AppColors.white,
-                        child: Text(categories[index][0], style: AppTextStyles.caption,),
-                      ),
-                      title: Text(categories[index], style: AppTextStyles.subHeads,),
-                      trailing: Icon(Icons.chevron_right),
-                    ),
-                  )),
-                  );
-                }
-              )
+                    )),
+                    );
+                  }
+                )
+                
               )
               )
             ],

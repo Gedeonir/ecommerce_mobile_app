@@ -29,6 +29,8 @@ class _OrderListState extends State<OrdersList> {
           children: [
             Header(title: 'My Orders'),
 
+            SizedBox(height: 1,),
+
             Expanded(
               child:SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -100,7 +102,6 @@ class _OrderListState extends State<OrdersList> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

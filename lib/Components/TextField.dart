@@ -32,9 +32,11 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 100,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: containerColor ?? AppColors.success,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           boxShadow ??
               BoxShadow(

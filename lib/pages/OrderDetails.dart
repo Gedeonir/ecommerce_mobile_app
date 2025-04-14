@@ -54,6 +54,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Header(title: 'Order Details'),
+            SizedBox(height: 1,),
 
             Expanded(
               child:SingleChildScrollView(
@@ -266,7 +267,6 @@ class _OrderDetailsState extends State<OrderDetails> {
         ),
       ),
 
-      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

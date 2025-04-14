@@ -13,10 +13,19 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 50,
-      child: Container(
-        color: AppColors.white,
+    return Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: Offset(0, 1), // changes position of shadow
+            ),
+          ]
+        ),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +48,6 @@ class _HeaderState extends State<Header> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

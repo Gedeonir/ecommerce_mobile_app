@@ -68,6 +68,9 @@ class _ProductlistState extends State<Productlist> {
             Header(
               title: "Men's Shoes",
             ),
+            
+            SizedBox(height: 1,),
+
             Container(
                 padding: EdgeInsets.only(
                   left: 10,
